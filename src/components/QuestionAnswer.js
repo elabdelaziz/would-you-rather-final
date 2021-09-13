@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { connect } from "react-redux";
 import {
   Container,
@@ -11,6 +11,7 @@ import {
   Avatar,
   LinearProgress,
 } from "@material-ui/core/";
+import Nav from "./nav";
 
 const QuestionAnswer = (props) => {
   const useStyles = makeStyles({
@@ -64,10 +65,10 @@ const QuestionAnswer = (props) => {
       textAlign: "center",
     },
     chipState: {
-        position: 'relative',
-        left: '210px',
-        bottom: '5px'
-    }
+      position: "relative",
+      left: "210px",
+      bottom: "5px",
+    },
   });
 
   const classes = useStyles();
@@ -82,82 +83,85 @@ const QuestionAnswer = (props) => {
     Math.round((totalVoteOptionOne / totalVotes) * 10000) / 100;
   const optionTwoPercentage =
     Math.round((totalVoteOptionTwo / totalVotes) * 10000) / 100;
-    
+
   return (
-    <Container maxWidth="sm">
-      <CssBaseline />
-      <Card className={classes.root}>
-        <h4 className={classes.mainHead}>{question.author} asks</h4>
-        <h2 className={classes.mainHead}>Would you rather?</h2>
-        <div className={classes.secContainer}>
-          <div className={classes.imgColumn}>
-            <img
-              src={avatar}
-              alt={`${question.author} avatar`}
-              width={"100%"}
-              height={"100%"}
-            />
-          </div>
-          <div className={classes.selectionColumn}>
-            <Box m={2} className={classes.voteStat}>
-              <h4 className={classes.questionHead}>
-                {question.optionOne.text}
-              </h4>
-              {question.optionOne.votes.includes(authedUser) && (
-                <Chip
-                  className={classes.chipState}
-                  avatar={
-                    <Avatar
-                      alt="Natacha"
-                      src={`${users[authedUser].avatarURL}`}
-                    />
-                  }
-                  label="Your Answer"
-                  color="primary"
-                />
-              )}
-              <LinearProgress
-                className={classes.progress}
-                variant="determinate"
-                value={optionOnePercentage}
-                color="secondary"
+    <Fragment>
+      <Nav />
+      <Container maxWidth="sm">
+        <CssBaseline />
+        <Card className={classes.root}>
+          <h4 className={classes.mainHead}>{question.author} asks</h4>
+          <h2 className={classes.mainHead}>Would you rather?</h2>
+          <div className={classes.secContainer}>
+            <div className={classes.imgColumn}>
+              <img
+                src={avatar}
+                alt={`${question.author} avatar`}
+                width={"100%"}
+                height={"100%"}
               />
-              <p className={classes.center}>
-                {optionOnePercentage}% ... {totalVoteOptionOne} out of {""}
-                {totalVotes}
-              </p>
-              <Divider middle="true" />
-              <h4 className={classes.questionHead}>
-                {question.optionTwo.text}
-              </h4>
-              {question.optionTwo.votes.includes(authedUser) && (
-                <Chip
-                  className={classes.chipState}
-                  avatar={
-                    <Avatar
-                      alt="Natacha"
-                      src={`${users[authedUser].avatarURL}`}
-                    />
-                  }
-                  label="Your Answer"
-                  color="primary"
+            </div>
+            <div className={classes.selectionColumn}>
+              <Box m={2} className={classes.voteStat}>
+                <h4 className={classes.questionHead}>
+                  {question.optionOne.text}
+                </h4>
+                {question.optionOne.votes.includes(authedUser) && (
+                  <Chip
+                    className={classes.chipState}
+                    avatar={
+                      <Avatar
+                        alt="Natacha"
+                        src={`${users[authedUser].avatarURL}`}
+                      />
+                    }
+                    label="Your Answer"
+                    color="primary"
+                  />
+                )}
+                <LinearProgress
+                  className={classes.progress}
+                  variant="determinate"
+                  value={optionOnePercentage}
+                  color="secondary"
                 />
-              )}
-              <LinearProgress
-                className={classes.progress}
-                variant="determinate"
-                value={optionTwoPercentage}
-                color="secondary"
-              />
-              <p className={classes.center}>
-                {optionTwoPercentage}% ― {totalVoteOptionTwo} out of{" "}
-                {totalVotes} votes
-              </p>
-            </Box>
+                <p className={classes.center}>
+                  {optionOnePercentage}% ... {totalVoteOptionOne} out of {""}
+                  {totalVotes}
+                </p>
+                <Divider middle="true" />
+                <h4 className={classes.questionHead}>
+                  {question.optionTwo.text}
+                </h4>
+                {question.optionTwo.votes.includes(authedUser) && (
+                  <Chip
+                    className={classes.chipState}
+                    avatar={
+                      <Avatar
+                        alt="Natacha"
+                        src={`${users[authedUser].avatarURL}`}
+                      />
+                    }
+                    label="Your Answer"
+                    color="primary"
+                  />
+                )}
+                <LinearProgress
+                  className={classes.progress}
+                  variant="determinate"
+                  value={optionTwoPercentage}
+                  color="secondary"
+                />
+                <p className={classes.center}>
+                  {optionTwoPercentage}% ― {totalVoteOptionTwo} out of{" "}
+                  {totalVotes} votes
+                </p>
+              </Box>
+            </div>
           </div>
-        </div>
-      </Card>
-    </Container>
+        </Card>
+      </Container>
+    </Fragment>
   );
 };
 

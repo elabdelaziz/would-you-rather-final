@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from "react";
-import { Container, TextField, Divider, Button } from "@material-ui/core";
+import React, { Fragment } from "react";
+import { Container, TextField, Button } from "@material-ui/core";
 import Nav from "./nav";
 import { connect } from "react-redux";
 import { handleAddQuestion } from "../actions/questions";

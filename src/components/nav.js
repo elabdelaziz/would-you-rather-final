@@ -36,7 +36,6 @@ const Nav = (props) => {
         </li>
         <li style={{ color: "yellow" }}>{`hello ${users[authedUser].name}`}</li>
         <li>
-          {/* <span >helo</span> */}
           <span className="userProfile">
             <img
               src={avatar}

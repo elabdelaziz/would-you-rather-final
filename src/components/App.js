@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "../App.css";
 import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
@@ -9,6 +9,7 @@ import QuestionPage from "./QuestionPage";
 import NewQuestion from "./NewQuestion";
 import ProtectedRoute from "./ProtectedRoute";
 import LeaderBoard from "./LeaderBoard";
+import PageNotFound from "./PageNotFound";
 
 class App extends Component {
   componentDidMount() {
@@ -18,11 +19,20 @@ class App extends Component {
     return (
       <Router>
         <Fragment>
-          <ProtectedRoute path="/" exact component={DashBoard} />
-          <Route path="/homelogin" exact component={HomeLogin} />
-          <Route path="/question/:id" exact component={QuestionPage} />
-          <Route path="/new" exact component={NewQuestion} />
-          <Route path="/leaderboard" exact component={LeaderBoard} />
+          <Switch>
+            <ProtectedRoute path="/" exact component={DashBoard} />
+            <Route path="/homelogin" exact component={HomeLogin} />
+            <ProtectedRoute
+              path="/question/:id"
+              exact
+              component={QuestionPage}
+            />
+            <ProtectedRoute path="/new" exact component={NewQuestion} />
+            <ProtectedRoute path="/leaderboard" exact component={LeaderBoard} />
+            <Route path="*">
+              <PageNotFound />
+            </Route>
+          </Switch>
         </Fragment>
       </Router>
     );

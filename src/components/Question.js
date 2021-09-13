@@ -1,9 +1,7 @@
-import React, { Component, Fragment } from "react";
-import { formatQuestion } from "../utils/helpers";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
-import Nav from "./nav";
 import {
   Container,
   CssBaseline,
@@ -66,7 +64,6 @@ const Question = (props) => {
   return (
     <Fragment>
       <Container maxWidth="sm">
-        {/* <Link to={`/question/${id}`}> */}
         <CssBaseline />
         <Card className={classes.root}>
           <h4 className={classes.mainHead}>{author.name} asks</h4>

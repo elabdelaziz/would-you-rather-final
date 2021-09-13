@@ -3,6 +3,7 @@
 ## getting started with 'npm install'
 
 run npm install in the command line to install dependencies
+run npm start to launch the app
 
 ## Project routes
 

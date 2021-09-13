@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { setAuthedUser } from "../actions/authedUser";
 import { makeStyles } from "@material-ui/core/styles";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
-import { Redirect } from "react-router-dom";
+import { Redirect, useLocation } from "react-router-dom";
 import {
   Avatar,
   CssBaseline,
@@ -43,6 +43,8 @@ function HomeLogin(props) {
   let [hasChoosed, changeHasChoosed] = useState(false);
   const [btnDisabled, setBtnDisabled] = useState(true);
 
+  const { state } = useLocation();
+
   const handleLoginDispatch = (event) => {
     const { dispatch } = props;
     dispatch(setAuthedUser(currUserId));
@@ -53,7 +55,7 @@ function HomeLogin(props) {
   const classes = useStyles();
 
   if (hasChoosed) {
-    return <Redirect to="/" />;
+    return <Redirect to={state?.from || "/"} />;
   }
 
   return (
@@ -75,7 +77,7 @@ function HomeLogin(props) {
             setBtnDisabled(false);
           }}
         >
-          <option value="select user" selected disabled>
+          <option value="select user" disabled>
             Select user...
           </option>
           {Object.keys(users).map((key) => {
