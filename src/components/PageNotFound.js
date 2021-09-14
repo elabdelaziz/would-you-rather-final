@@ -1,18 +1,16 @@
+import { Button } from "@material-ui/core";
 import React from "react";
-import { Redirect } from "react-router";
+import { Link } from "react-router-dom";
 
 const PageNotFound = (props) => {
   return (
-    <div>
+    <div style={{ textAlign: "center" }}>
       <h1>Sorry, Page Not Found</h1>
-      <button
-        onClick={(e) => {
-          e.preventDefault();
-          return <Redirect to="/" />;
-        }}
-      >
-        Home
-      </button>
+      <Link to="/homelogin">
+        <Button fullWidth variant="contained" color="secondary">
+          Return Home
+        </Button>
+      </Link>
     </div>
   );
 };

@@ -61,7 +61,7 @@ class NewQuestion extends React.Component {
                 type="submit"
                 color="secondary"
                 fullWidth
-                disabled={!optionOne || !optionTwo}
+                disabled={optionOne <= 0 || optionTwo <= 0}
                 variant="contained"
                 onClick={(e) => this.handleSubmitQuestion(e)}
               >

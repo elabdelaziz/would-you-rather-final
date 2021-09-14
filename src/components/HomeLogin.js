@@ -77,7 +77,7 @@ function HomeLogin(props) {
             setBtnDisabled(false);
           }}
         >
-          <option value="select user" disabled>
+          <option value={true} style={{ display: "none" }}>
             Select user...
           </option>
           {Object.keys(users).map((key) => {

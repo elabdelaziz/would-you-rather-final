@@ -27,7 +27,7 @@ class App extends Component {
               exact
               component={QuestionPage}
             />
-            <ProtectedRoute path="/new" exact component={NewQuestion} />
+            <ProtectedRoute path="/add" exact component={NewQuestion} />
             <ProtectedRoute path="/leaderboard" exact component={LeaderBoard} />
             <Route path="*">
               <PageNotFound />
@@ -38,9 +38,5 @@ class App extends Component {
     );
   }
 }
-function mapStateToProps({ authedUser }) {
-  return {
-    authedUser,
-  };
-}
-export default connect(mapStateToProps)(App);
+
+export default connect()(App);
