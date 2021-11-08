@@ -1,62 +1,58 @@
 import React from "react";
 import { connect } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { clearAuthedUser } from "../actions/authedUser";
-import { Button } from "@material-ui/core";
 import { Redirect } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 const Nav = (props) => {
   const { authedUser, users } = props;
   const avatar = authedUser ? users[authedUser].avatarURL : null;
 
   return (
-    <nav className="nav">
-      <div className="logo">
-        <li className="logoName">
-          <NavLink to="/" exact activeClassName="active">
-            Would You Rather?
-          </NavLink>
-        </li>
-      </div>
-      <ul>
-        <li>
-          <NavLink to="/" exact activeClassName="active">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/leaderboard" activeClassName="active">
-            Leaderboard
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/add" activeClassName="active">
-            New Question
-          </NavLink>
-        </li>
-        <li style={{ color: "yellow" }}>{`hello ${users[authedUser].name}`}</li>
-        <li>
-          <span className="userProfile">
+    <header>
+      <div className="container">
+        <Link to="/" className="logo gradient-text">
+          Would You Rather?
+        </Link>
+        <i className="hamburger-menu">
+          <GiHamburgerMenu className="ham" />
+        </i>
+        <ul className="main-nav">
+          <li>
+            <NavLink to="/" exact>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/leaderboard">Leaderboard</NavLink>
+          </li>
+          <li>
+            <NavLink to="/add">New Question</NavLink>
+          </li>
+          <li>
+            <span>{`hello, ${
+              authedUser ? users[authedUser].name : "none"
+            }`}</span>
             <img
               src={avatar}
               alt={`Avatar of ${props.authedUser}`}
               className="nav-avatar"
             />
-          </span>
-        </li>
-        <li>
-          <Button
-            color="secondary"
-            onClick={() => {
-              props.dispatch(clearAuthedUser());
-              return <Redirect to="/homelogin" />;
-            }}
-          >
-            Logout
-          </Button>
-        </li>
-      </ul>
-    </nav>
+          </li>
+          <li>
+            <button
+              onClick={() => {
+                props.dispatch(clearAuthedUser());
+                return <Redirect to="/homelogin" />;
+              }}
+            >
+              Logout
+            </button>
+          </li>
+        </ul>
+      </div>
+    </header>
   );
 };
 

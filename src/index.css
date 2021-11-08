@@ -1,13 +1,534 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --main-color: #111827;
+  --secondary-color: #e5e7eb;
+}
+/* global rules */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+* {
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Cairo", sans-serif;
+}
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+.container {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.center {
+  text-align: center;
+}
+
+/* small */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+/* medium */
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+/* large */
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+h1,
+h2,
+h3,
+h3,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+}
+button {
+  cursor: pointer;
+}
+.relative {
+  position: relative;
+}
+/* global rules */
+
+.container .questions {
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* login page */
+.box {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.box div:first-child {
+  height: 100vh;
+  width: 100%;
+  background-image: url(./images/light-bulb.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.box div:first-child h1 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 20%;
+}
+.box .card {
+  align-items: center;
+  justify-content: center;
+  width: 70%;
+  margin: auto;
+  height: 70%;
+}
+.box .card h1 {
+  display: none;
+}
+.box .card h2 {
+  font-size: 1rem;
+  font-weight: normal;
+}
+.box .card select {
+  border: 1px solid var(--main-color);
+  width: 90%;
+  height: 40px;
+}
+.box .card select .user-options::before {
+  height: 50px;
+  border-radius: 50%;
+  background-color: black;
+}
+@media (max-width: 767px) {
+  .box {
+    grid-template-columns: minmax(0, 1fr);
+    background-image: url(./images/mobilelogin.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+  }
+  .box div:first-child {
+    display: none;
+  }
+  .box .card {
+    width: 100%;
+    margin: auto;
+    height: 100vh;
+  }
+  .box .card h1 {
+    display: block;
+    margin: 10px;
+    font-size: 2rem;
+    font-weight: 600;
+    background-color: white;
+    position: absolute;
+    top: 15%;
+    border-radius: 40px;
+    padding: 10px;
+  }
+  .box .card h2 {
+    display: none;
+  }
+}
+/* login page */
+
+/* header */
+header {
+  color: white;
+  background-color: var(--main-color);
+  position: relative;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 40%);
+  border-radius: 0 0 10px 10px;
+  margin-bottom: 1rem;
+}
+
+header .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+header .hamburger-menu {
+  color: white;
+  font-size: 22px;
+}
+@media (min-width: 767px) {
+  header .hamburger-menu {
+    display: none;
+  }
+}
+
+header .logo {
+  color: white;
+  /* color: var(--main-color); */
+  font-size: 16px;
+  font-weight: bold;
+  height: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+header .main-nav {
+  display: flex;
+}
+header .main-nav > li > a,
+header .main-nav > li > button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 72px;
+  position: relative;
+  color: white;
+  padding: 0 30px;
+  overflow: hidden;
+  font-size: 14px;
+  transition: 0.3s;
+}
+header .main-nav > li > a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: darkorange;
+  top: 0;
+  left: -100%;
+  transition: 0.3s;
+}
+header .main-nav > li > a:hover {
+  color: var(--main-color);
+  background-color: var(--secondary-color);
+}
+header .main-nav > li > a:hover::before {
+  left: 0;
+}
+@media (max-width: 767px) {
+  header .logo {
+    height: 50px;
+  }
+  header .main-nav {
+    margin: auto;
+  }
+  header .main-nav > li > a,
+  header .main-nav > li > span {
+    padding: 10px;
+    font-size: 14px;
+    height: 40px;
+  }
+}
+
+.main-nav > li:nth-child(4) {
+  display: flex;
+  align-items: center;
+}
+.main-nav > li:nth-child(4) span {
+  color: #b08857;
+}
+
+.nav-avatar {
+  height: 30px;
+  border-radius: 50%;
+  margin-left: 5px;
+}
+
+.main-nav li button {
+  color: red !important;
+}
+
+@media (max-width: 767px) {
+  header .main-nav {
+    display: none;
+  }
+  header .hamburger-menu:hover + ul {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    background-color: var(--main-color);
+    left: 2%;
+    width: 96%;
+    align-items: flex-start;
+    border-radius: 0 0 10px 10px;
+  }
+  header .hamburger-menu:hover + ul li a {
+    padding: 15px;
+  }
+  .main-nav > li:nth-child(4) {
+    order: -1;
+    width: 100%;
+    justify-content: center;
+  }
+}
+/* header */
+
+.q-filter-btn {
+  padding: 15px;
+  background-color: var(--secondary-color);
+  color: black;
+  width: 50%;
+  border: none;
+  margin-top: 1rem;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 10%);
+}
+.card-container {
+  width: 500px;
+  margin: auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 60px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 30%);
+}
+
+.gradient-text {
+  /* Fallback: Set a background color. */
+  background-color: #ca4246;
+
+  /* Create the gradient. */
+  background-image: linear-gradient(
+    45deg,
+    #ca4246 16.666%,
+    #e16541 16.666%,
+    #e16541 33.333%,
+    #f18f43 33.333%,
+    #f18f43 50%,
+    #8b9862 50%,
+    #8b9862 66.666%,
+    #476098 66.666%,
+    #476098 83.333%,
+    #a7489b 83.333%
+  );
+
+  /* Set the background size and repeat properties. */
+  background-size: 100%;
+  background-repeat: repeat;
+
+  /* Use the text as a mask for the background. */
+  /* This will show the gradient as a text color rather than element bg. */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.card > div:first-child {
+  text-align: center;
+  padding: 5px;
+  background-color: var(--main-color);
+  color: white;
+}
+.card:first-child h4 {
+  display: block;
+  margin: 0;
+}
+.sec-row {
+  display: flex;
+  padding: 20px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.main-img {
+  height: 80px;
+  border-radius: 50%;
+}
+.selection-column {
+  flex: 1;
+}
+.selection-column p {
+  font-weight: 400;
+  color: #9ca3af;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.card .view-question {
+  display: block;
+  min-width: 70%;
+  margin: 25px auto 5px auto;
+  padding: 15px 10px 15px 10px;
+  background-color: var(--main-color);
+  border: none;
+  position: relative;
+  border-radius: 10px;
+  transition: 0.3s;
+  color: white;
+  cursor: pointer;
+}
+
+.question-link {
+  display: block;
+  width: 100%;
+  color: white;
+}
+
+.card .view-question:hover {
+  background-color: #374151;
+}
+
+.radio-wrappers {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  margin: 10px 0 0 5rem;
+  align-items: center;
+  background-color: aliceblue;
+  padding: 0.5em;
+  border-radius: 10px;
+}
+.radio-wrappers label {
+  cursor: pointer;
+}
+.radio-wrappers:hover {
+  background-color: #9fa3a6;
+}
+
+.sec-row-options {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.radio-container {
+  flex: 1;
+}
+
+.all-answers-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 15px;
+}
+.all-answers-container .answers-options {
+  text-align: center;
+}
+
+@media (max-width: 540px) {
+  .card-container {
+    width: 100%;
+  }
+  .sec-row {
+    flex-direction: column;
+  }
+  .container .questions {
+    width: 100%;
+  }
+  .card .view-question {
+    width: 13rem;
+  }
+  .selection-column p {
+    margin: 14px;
+  }
+  .radio-wrappers {
+    margin: 10px;
+  }
+  .radio-wrappers > label {
+    font-size: 0.8em;
+  }
+  .new-q-btn {
+    display: none;
+  }
+}
+
+.leader-card {
+  display: flex;
+  flex-direction: column;
+  margin: 60px 0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 15px rgb(0 0 0 / 30%);
+}
+.leader-card div:nth-child(1) {
+  text-align: center;
+  padding: 5px;
+  background-color: var(--main-color);
+  color: white;
+}
+/* .leader-card div:last-child {
+}
+.leader-card div:last-child img {
+}
+.leader-card div:last-child .leader-stat {
+} */
+.leader-card .leader-stat span {
+  display: block;
+}
+
+/* add button */
+.new-q-btn {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+}
+
+.new-q-btn .new-q-btn-link {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--main-color);
+  background-image: url("./icons/add.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 40px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  font-size: 0;
+  outline: 0;
+}
+
+.new-q-btn .new-q-btn-link:hover {
+  background-color: #252f46;
+}
+
+/* new question */
+.new-question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.new-question-input {
+  width: 100%;
+  margin-bottom: 4rem;
+}
+/* new question */

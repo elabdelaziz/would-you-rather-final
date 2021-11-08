@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { Container, TextField, Button } from "@material-ui/core";
-import Nav from "./nav";
 import { connect } from "react-redux";
 import { handleAddQuestion } from "../actions/questions";
 
@@ -28,7 +27,6 @@ class NewQuestion extends React.Component {
     const { optionOne, optionTwo } = this.state;
     return (
       <Fragment>
-        <Nav authedUser={this.props.authedUser} />
         <Container maxWidth="sm">
           <div className="new-question-container">
             <h1>Create Poll</h1>
@@ -45,6 +43,7 @@ class NewQuestion extends React.Component {
                 value={optionOne}
                 onChange={(e) => this.handleOnChange(e)}
               />
+              <br />
               <TextField
                 className="new-question-input"
                 id="optionTwo"

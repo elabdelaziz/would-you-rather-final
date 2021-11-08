@@ -1,77 +1,41 @@
 import React, { useState } from "react";
 import { setAuthedUser } from "../actions/authedUser";
 import { makeStyles } from "@material-ui/core/styles";
-import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { Redirect, useLocation } from "react-router-dom";
-import {
-  Avatar,
-  CssBaseline,
-  Typography,
-  Container,
-  Card,
-  Button,
-} from "@material-ui/core/";
+import { Button } from "@material-ui/core/";
 import { connect } from "react-redux";
 
 const useStyles = makeStyles({
-  root: {
-    maxWidth: "100%",
-    marginTop: "10vw",
-    height: "370px",
-    display: "flex",
-    alignItems: "center",
-    flexDirection: "column",
-  },
-  avatar: {
-    marginTop: "20px",
-    backgroundColor: "white",
-  },
-  selection: {
-    cursor: "pointer",
-  },
-
-  logHeader: {
-    margin: "20px",
-  },
   btn: {
     marginTop: "20px",
   },
 });
-
 function HomeLogin(props) {
   let [currUserId, handleChange] = useState(null);
   let [hasChoosed, changeHasChoosed] = useState(false);
   const [btnDisabled, setBtnDisabled] = useState(true);
-
   const { state } = useLocation();
-
   const handleLoginDispatch = (event) => {
     const { dispatch } = props;
     dispatch(setAuthedUser(currUserId));
     changeHasChoosed((hasChoosed = true));
   };
-
   const { users } = props;
   const classes = useStyles();
 
   if (hasChoosed) {
     return <Redirect to={state?.from || "/"} />;
   }
-
   return (
-    <Container maxWidth="sm">
-      <CssBaseline />
-      <Card className={classes.root}>
-        <Avatar className={classes.avatar}>
-          <InsertEmoticonIcon color="secondary" fontSize="large" />
-        </Avatar>
-        <Typography className={classes.logHeader} variant="h4">
-          Would You Rather?
-        </Typography>
-        <Typography variant="subtitle1">Pick Your Hero</Typography>
-
+    <div className="box">
+      <div>
+        <h1 className="gradient-text">Would You Rather Game</h1>
+      </div>
+      <div className="card relative">
+        <h1 className="">Would You Rather?</h1>
+        <h2>Pick Your character</h2>
         <select
-          className={classes.selection}
+          className=""
           onChange={(event) => {
             handleChange((currUserId = event.target.value));
             setBtnDisabled(false);
@@ -82,7 +46,7 @@ function HomeLogin(props) {
           </option>
           {Object.keys(users).map((key) => {
             return (
-              <option value={users[key].id} key={key}>
+              <option className="user-options" value={users[key].id} key={key}>
                 {users[key].name}
               </option>
             );
@@ -97,11 +61,10 @@ function HomeLogin(props) {
         >
           login
         </Button>
-      </Card>
-    </Container>
+      </div>
+    </div>
   );
 }
-
 function mapStateToProps({ users }) {
   return {
     users,
