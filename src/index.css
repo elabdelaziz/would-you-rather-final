@@ -186,6 +186,7 @@ header .container {
 header .hamburger-menu {
   color: white;
   font-size: 22px;
+  cursor: pointer;
 }
 @media (min-width: 767px) {
   header .hamburger-menu {
@@ -273,8 +274,8 @@ header .main-nav > li > a:hover::before {
   header .main-nav {
     display: none;
   }
-  header .hamburger-menu:hover + ul {
-    display: flex;
+  .showMenu {
+    display: flex !important;
     flex-direction: column;
     position: absolute;
     top: 100%;
@@ -284,8 +285,8 @@ header .main-nav > li > a:hover::before {
     align-items: flex-start;
     border-radius: 0 0 10px 10px;
   }
-  header .hamburger-menu:hover + ul li a {
-    padding: 15px;
+  .showMenu li a {
+    padding: 15px !important;
   }
   .main-nav > li:nth-child(4) {
     order: -1;
@@ -468,6 +469,9 @@ header .main-nav > li > a:hover::before {
   .new-q-btn {
     display: none;
   }
+  .q-filter-btn {
+    font-size: 0.6rem;
+  }
 }
 
 .leader-card {
@@ -532,3 +536,7 @@ header .main-nav > li > a:hover::before {
   margin-bottom: 4rem;
 }
 /* new question */
+
+.ham {
+  color: white;
+}

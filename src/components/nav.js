@@ -1,13 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { clearAuthedUser } from "../actions/authedUser";
 import { Redirect } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { AiFillCloseCircle } from "react-icons/ai";
 
 const Nav = (props) => {
   const { authedUser, users } = props;
   const avatar = authedUser ? users[authedUser].avatarURL : null;
+
+  const linksList = [
+    {
+      link: "/",
+      name: "Home",
+    },
+    {
+      link: "/leaderboard",
+      name: "Leaderboard",
+    },
+    {
+      link: "/add",
+      name: "New Question",
+    },
+  ];
+  const [navbarOpen, setNavbarOpen] = useState(false);
+  const handleToggle = () => {
+    setNavbarOpen((prev) => !prev);
+  };
+  const closeMenu = () => {
+    setNavbarOpen(false);
+  };
 
   return (
     <header>
@@ -15,21 +38,21 @@ const Nav = (props) => {
         <Link to="/" className="logo gradient-text">
           Would You Rather?
         </Link>
-        <i className="hamburger-menu">
-          <GiHamburgerMenu className="ham" />
+        <i onClick={handleToggle} className="hamburger-menu">
+          {navbarOpen ? (
+            <AiFillCloseCircle className="ham" />
+          ) : (
+            <GiHamburgerMenu className="ham" />
+          )}
         </i>
-        <ul className="main-nav">
-          <li>
-            <NavLink to="/" exact>
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/leaderboard">Leaderboard</NavLink>
-          </li>
-          <li>
-            <NavLink to="/add">New Question</NavLink>
-          </li>
+        <ul className={`main-nav ${navbarOpen ? " showMenu" : ""}`}>
+          {linksList.map((item) => (
+            <li>
+              <NavLink onClick={() => closeMenu()} to={item.link} exact>
+                {item.name}
+              </NavLink>
+            </li>
+          ))}
           <li>
             <span>{`hello, ${
               authedUser ? users[authedUser].name : "none"
