@@ -469,9 +469,13 @@ header .main-nav > li > a:hover::before {
   .radio-wrappers > label {
     font-size: 0.8em;
   }
-  .new-q-btn {
+  /* .new-q-btn {
     display: none;
-  }
+  } */
+  /* .new-q-btn .new-q-btn-link {
+    width: 35px;
+    height: 35px;
+  } */
   .q-filter-btn {
     font-size: 0.6rem;
     font-weight: bold;
@@ -526,6 +530,13 @@ header .main-nav > li > a:hover::before {
 
 .new-q-btn .new-q-btn-link:hover {
   background-color: #252f46;
+}
+
+@media (max-width: 540px) {
+  .new-q-btn .new-q-btn-link {
+    width: 50px;
+    height: 50px;
+  }
 }
 
 /* new question */
