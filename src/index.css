@@ -285,6 +285,9 @@ header .main-nav > li > a:hover::before {
     align-items: flex-start;
     border-radius: 0 0 10px 10px;
   }
+  .showMenu li {
+    width: 100%;
+  }
   .showMenu li a {
     padding: 15px !important;
   }
@@ -471,6 +474,7 @@ header .main-nav > li > a:hover::before {
   }
   .q-filter-btn {
     font-size: 0.6rem;
+    font-weight: bold;
   }
 }
 

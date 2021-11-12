@@ -46,8 +46,8 @@ const Nav = (props) => {
           )}
         </i>
         <ul className={`main-nav ${navbarOpen ? " showMenu" : ""}`}>
-          {linksList.map((item) => (
-            <li>
+          {linksList.map((item, i) => (
+            <li key={i}>
               <NavLink onClick={() => closeMenu()} to={item.link} exact>
                 {item.name}
               </NavLink>
