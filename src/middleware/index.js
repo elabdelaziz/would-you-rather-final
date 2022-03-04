@@ -1,4 +1,8 @@
 import thunk from "redux-thunk";
-import { applyMiddleware } from "redux";
+import { applyMiddleware, compose } from "redux";
 
-export default applyMiddleware(thunk);
+const composeEnhancers =
+  (typeof window !== "undefined" &&
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
+  compose;
+export default composeEnhancers(applyMiddleware(thunk));

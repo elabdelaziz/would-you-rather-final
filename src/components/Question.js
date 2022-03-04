@@ -20,12 +20,10 @@ const Question = (props) => {
 };
 function mapStateToProps({ authedUser, users, questions }, { id }) {
   const question = questions[id];
-  const author = question ? users[question.author] : null;
+  // const author = question ? users[question.author] : null;
 
   return {
-    authedUser,
     question: question,
-    author,
   };
 }
 export default connect(mapStateToProps)(Question);
